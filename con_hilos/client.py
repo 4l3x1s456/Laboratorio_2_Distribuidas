@@ -1,5 +1,6 @@
 # con_hilos/client.py
 # Igual UX que el cliente secuencial
+import os
 import socket
 import json
 
@@ -14,6 +15,7 @@ def enviar_comando(comando: str):
     return json.loads(data)
 
 def menu():
+    os.system("cls")
     print("\n--- Menú de Calificaciones (Concurrente) ---")
     print("1. Agregar calificación")
     print("2. Buscar por ID")
@@ -27,6 +29,7 @@ def main():
     while True:
         opcion = menu()
         if opcion == "1":
+            os.system("cls")
             id_est = input("ID: ").strip()
             nombre = input("Nombre: ").strip()
             materia = input("Materia (NRC): ").strip()
@@ -34,6 +37,7 @@ def main():
             res = enviar_comando(f"AGREGAR|{id_est}|{nombre}|{materia}|{calif}")
             print(res.get("mensaje", res.get("status")))
         elif opcion == "2":
+            os.system("cls")
             id_est = input("ID: ").strip()
             res = enviar_comando(f"BUSCAR|{id_est}")
             if res.get("status") == "ok":
@@ -42,11 +46,13 @@ def main():
             else:
                 print(res.get("mensaje", res.get("status")))
         elif opcion == "3":
+            os.system("cls")
             id_est = input("ID: ").strip()
             nueva = input("Nueva calificación: ").strip()
             res = enviar_comando(f"ACTUALIZAR|{id_est}|{nueva}")
             print(res.get("mensaje", res.get("status")))
         elif opcion == "4":
+            os.system("cls")
             res = enviar_comando("LISTAR")
             if res.get("status") == "ok":
                 filas = res.get("data", [])
@@ -57,6 +63,7 @@ def main():
             else:
                 print(res.get("mensaje", res.get("status")))
         elif opcion == "5":
+            os.system("cls")
             id_est = input("ID: ").strip()
             res = enviar_comando(f"ELIMINAR|{id_est}")
             print(res.get("mensaje", res.get("status")))
@@ -64,6 +71,7 @@ def main():
             break
         else:
             print("Opción inválida")
+            os.system("pause")
 
 if __name__ == "__main__":
     main()
