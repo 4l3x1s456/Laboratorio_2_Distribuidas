@@ -36,6 +36,7 @@ def main():
             calif = input("Calificación [0-20]: ").strip()
             res = enviar_comando(f"AGREGAR|{id_est}|{nombre}|{materia}|{calif}")
             print(res.get("mensaje", res.get("status")))
+            os.system("pause")
         elif opcion == "2":
             os.system("cls")
             id_est = input("ID: ").strip()
@@ -45,12 +46,14 @@ def main():
                 print(f"ID={d['ID_Estudiante']}, Nombre={d['Nombre']}, Materia={d['Materia']}, Calificación={d['Calificacion']}")
             else:
                 print(res.get("mensaje", res.get("status")))
+            os.system("pause")
         elif opcion == "3":
             os.system("cls")
             id_est = input("ID: ").strip()
             nueva = input("Nueva calificación: ").strip()
             res = enviar_comando(f"ACTUALIZAR|{id_est}|{nueva}")
             print(res.get("mensaje", res.get("status")))
+            os.system("pause")
         elif opcion == "4":
             os.system("cls")
             res = enviar_comando("LISTAR")
@@ -62,11 +65,13 @@ def main():
                     print(row)
             else:
                 print(res.get("mensaje", res.get("status")))
+            os.system("pause")
         elif opcion == "5":
             os.system("cls")
             id_est = input("ID: ").strip()
             res = enviar_comando(f"ELIMINAR|{id_est}")
             print(res.get("mensaje", res.get("status")))
+            os.system("pause")
         elif opcion == "6":
             break
         else:
